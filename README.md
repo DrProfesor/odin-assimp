@@ -7,6 +7,6 @@
  * Place `assimp-vc140-mt.lib` next to `assimp.odin`
  * Place the DLL next to your executable
 
-##Notes:
+## Notes:
  * These bindings are incomplete right now, and I have only tested the `import_file` and `release_import` functions.
  * Some of the types may not be right
