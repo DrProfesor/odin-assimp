@@ -10,3 +10,4 @@
 ## Notes:
  * These bindings are incomplete right now, and I have only tested the `import_file` and `release_import` functions.
  * Some of the types may not be right
+ * Let me know if you find any issues, or submit a pull request
