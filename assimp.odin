@@ -4,20 +4,20 @@ foreign import lib "assimp-vc140-mt.lib";
 
 @(default_calling_convention="c")
 foreign lib {
-	@(link_name="aiImportFile")                import_file :: proc(pFile1: string, pFile2: u32) -> ^aiScene ---;
-	//@(link_name="aiImportFileEx")              import_fileex :: proc(pFile: string,pFlags: u32,pFS: ^aiFileIO) -> ^aiScene ---;
+	@(link_name="aiImportFile")                import_file :: proc(pFile1:cstring, pFile2: u32) -> ^aiScene ---;
+	//@(link_name="aiImportFileEx")              import_fileex :: proc(pFile:cstring,pFlags: u32,pFS: ^aiFileIO) -> ^aiScene ---;
 	@(link_name="aiApplyPostProcessing")       apply_post_processing :: proc(pScene: ^aiScene,pFlags: u32) -> ^aiScene ---;
-	//@(link_name="aiGetPredefinedLogStream")    get_predefined_log_stream :: proc(pStreams: aiDefaultLogStream,file: string) -> aiLogStream ---;
+	//@(link_name="aiGetPredefinedLogStream")    get_predefined_log_stream :: proc(pStreams: aiDefaultLogStream,file:cstring) -> aiLogStream ---;
 	//@(link_name="aiAttachLogStream")           attach_log_stream :: proc(stream: ^aiLogStream) ---;
 	//@(link_name="aiEnableVerboseLogging")      enable_verbose_logging :: proc(d: aiBool) ---;
 	//@(link_name="aiDetachLogStream")           detach_log_stream :: proc(stream: ^aiLogStream) -> aiReturn ---;
 	@(link_name="aiReleaseImport")             release_import :: proc(pScene: ^aiScene) ---;
-	@(link_name="aiIsExtensionSupported")      is_extension_supported :: proc(szExtension: string) -> aiBool ---;
+	@(link_name="aiIsExtensionSupported")      is_extension_supported :: proc(szExtension:cstring) -> aiBool ---;
 	@(link_name="aiGetExtensionList")          get_extension_list :: proc(szOut: ^aiString) ---;
 	@(link_name="aiGetMemoryRequirements")     get_memory_requirements :: proc(pIn: ^aiScene,info: ^aiMemoryInfo) ---;
-	@(link_name="aiSetImportPropertyInteger")  set_import_property_integer :: proc(szName: string,value: int) ---;
-	@(link_name="aiSetImportPropertyFloat")    set_import_property_float :: proc(szName: string,value: f64) ---;
-	@(link_name="aiSetImportPropertyString")   set_import_property_string :: proc(szName: string,st: ^aiString) ---;
+	@(link_name="aiSetImportPropertyInteger")  set_import_property_integer :: proc(szName:cstring,value: int) ---;
+	@(link_name="aiSetImportPropertyFloat")    set_import_property_float :: proc(szName:cstring,value: f64) ---;
+	@(link_name="aiSetImportPropertyString")   set_import_property_string :: proc(szName:cstring,st: ^aiString) ---;
 	@(link_name="aiCreateQuaternionFromMatrix")create_quaternion_from_matrix :: proc(quat: ^aiQuaternion,mat: ^aiMatrix3x3) ---;
 	@(link_name="aiDecomposeMatrix")           decompose_matrix :: proc(mat: ^aiMatrix4x4,scaling: ^aiVector3D,rotation: ^aiQuaternion,position: ^aiVector3D) ---;
 	@(link_name="aiTransposeMatrix4")          transpose_matrix4 :: proc(mat: ^aiMatrix4x4) ---;
@@ -28,11 +28,11 @@ foreign lib {
 	@(link_name="aiMultiplyMatrix3")           multiply_matrix3 :: proc(dst: ^aiMatrix3x3,src: ^aiMatrix3x3) ---;
 	@(link_name="aiIdentityMatrix3")           identity_matrix3 :: proc(mat: ^aiMatrix3x3) ---;
 	@(link_name="aiIdentityMatrix4")           identity_matrix4 :: proc(mat: ^aiMatrix4x4) ---;
-	@(link_name="aiGetMaterialProperty")       get_material_property :: proc(pMat: ^aiMaterial,pKey: string,type: u32,index: u32,pPropOut: ^^aiMaterialProperty) -> aiReturn ---;
-	@(link_name="aiGetMaterialFloatArray")     get_material_floatArray :: proc(pMat: ^aiMaterial,pKey: string,type: u32,index: u32,pOut: ^f64,pMax: ^u32) -> aiReturn ---;
-	@(link_name="aiGetMaterialIntegerArray")   get_material_integerArray :: proc(pMat: ^aiMaterial,pKey: string,type: u32,index: u32,pOut: ^int,pMax: ^u32) -> aiReturn ---;
-	@(link_name="aiGetMaterialColor")          get_material_color :: proc(pMat: ^aiMaterial,pKey: string,type: u32,index: u32,pOut: ^aiColor4D) -> aiReturn ---;
-	@(link_name="aiGetMaterialString")         get_material_string :: proc(pMat: ^aiMaterial,pKey: string,type: u32,index: u32,pOut: ^aiString) -> aiReturn ---;
+	@(link_name="aiGetMaterialProperty")       get_material_property :: proc(pMat: ^aiMaterial,pKey:cstring,type: u32,index: u32,pPropOut: ^^aiMaterialProperty) -> aiReturn ---;
+	@(link_name="aiGetMaterialFloatArray")     get_material_floatArray :: proc(pMat: ^aiMaterial,pKey:cstring,type: u32,index: u32,pOut: ^f64,pMax: ^u32) -> aiReturn ---;
+	@(link_name="aiGetMaterialIntegerArray")   get_material_integerArray :: proc(pMat: ^aiMaterial,pKey:cstring,type: u32,index: u32,pOut: ^int,pMax: ^u32) -> aiReturn ---;
+	@(link_name="aiGetMaterialColor")          get_material_color :: proc(pMat: ^aiMaterial,pKey:cstring,type: u32,index: u32,pOut: ^aiColor4D) -> aiReturn ---;
+	@(link_name="aiGetMaterialString")         get_material_string :: proc(pMat: ^aiMaterial,pKey:cstring,type: u32,index: u32,pOut: ^aiString) -> aiReturn ---;
 	@(link_name="aiGetMaterialTextureCount")   get_material_textureCount :: proc(pMat: ^aiMaterial,type: aiTextureType) -> u32 ---;
 	@(link_name="aiGetMaterialTexture")        get_material_texture :: proc(mat: ^aiMaterial,type: aiTextureType,index: u32,path: ^aiString,mapping: ^aiTextureMapping,uvindex: ^u32,blend: ^f64,op: ^aiTextureOp,mapmode: ^aiTextureMapMode) -> aiReturn ---;
 }
@@ -212,7 +212,7 @@ aiMaterialProperty :: struct {
 	mIndex : u32,
 	mDataLength : u32,
 	mType : aiPropertyTypeInfo,
-	mData : string,
+	mData :cstring,
 }
 aiMaterial :: struct {
 	mProperties : ^^aiMaterialProperty,
