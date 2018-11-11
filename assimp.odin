@@ -5,13 +5,13 @@ foreign import lib "assimp-vc140-mt.lib";
 @(default_calling_convention="c")
 foreign lib {
 	@(link_name="aiImportFile")                import_file :: proc(pFile1:cstring, pFile2: u32) -> ^aiScene ---;
+	@(link_name="aiReleaseImport")             release_import :: proc(pScene: ^aiScene) ---;
 	//@(link_name="aiImportFileEx")              import_fileex :: proc(pFile:cstring,pFlags: u32,pFS: ^aiFileIO) -> ^aiScene ---;
-	@(link_name="aiApplyPostProcessing")       apply_post_processing :: proc(pScene: ^aiScene,pFlags: u32) -> ^aiScene ---;
 	//@(link_name="aiGetPredefinedLogStream")    get_predefined_log_stream :: proc(pStreams: aiDefaultLogStream,file:cstring) -> aiLogStream ---;
 	//@(link_name="aiAttachLogStream")           attach_log_stream :: proc(stream: ^aiLogStream) ---;
 	//@(link_name="aiEnableVerboseLogging")      enable_verbose_logging :: proc(d: aiBool) ---;
 	//@(link_name="aiDetachLogStream")           detach_log_stream :: proc(stream: ^aiLogStream) -> aiReturn ---;
-	@(link_name="aiReleaseImport")             release_import :: proc(pScene: ^aiScene) ---;
+	@(link_name="aiApplyPostProcessing")       apply_post_processing :: proc(pScene: ^aiScene,pFlags: u32) -> ^aiScene ---;
 	@(link_name="aiIsExtensionSupported")      is_extension_supported :: proc(szExtension:cstring) -> aiBool ---;
 	@(link_name="aiGetExtensionList")          get_extension_list :: proc(szOut: ^aiString) ---;
 	@(link_name="aiGetMemoryRequirements")     get_memory_requirements :: proc(pIn: ^aiScene,info: ^aiMemoryInfo) ---;
