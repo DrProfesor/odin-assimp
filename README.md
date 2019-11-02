@@ -1,7 +1,7 @@
 ## Odin assimp bindings for 4.1.0
 
 ## Usage
- * Clone: https://github.com/assimp/assimp
+ * Clone: https://github.com/assimp/assimp/tree/v4.1.0
  * Build the x64 Visual Studio project
    - Cmake: cmake -G”Visual Studio 15 Win64"
  * Place `assimp-vc140-mt.lib` next to `assimp.odin`
